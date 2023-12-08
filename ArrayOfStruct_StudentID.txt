@@ -32,7 +32,6 @@ namespace ArrayOfStructs
                 s[i].year = Convert.ToInt32(Console.ReadLine());
             }
 
-
             Console.WriteLine("\n\nStudent's List\n");
             for (i = 0; i < 2; i++)
             {
@@ -43,9 +42,7 @@ namespace ArrayOfStructs
                 s[i].month +
                 "-" + s[i].year);
             }
-
             s[i].studid = Console.ReadLine();
-
         }
     }
 }
