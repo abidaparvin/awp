@@ -1,7 +1,6 @@
 using System;
 namespace Loop
 {
-
     class ForeachLoop
     {
         public static void Main(string[] args)
