@@ -1,0 +1,55 @@
+Choose .NET Framework [Web Application]
+
+Code:
+
+StyleSheet.css
+
+body {
+    background-color: gray;
+    font:italic;
+}
+
+------------------
+
+Web Form Skin File Skin1.skin
+
+<asp:Label runat="server" SkinId="lbl" backcolor=blue />
+
+-------------------
+
+Web Form Master Page as Site1.Master
+
+<body>
+    <link href="StyleSheet1.css" rel="stylesheet" type="text/css" />
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+
+-----------
+
+Web Forms with Master Page as WebForm1.aspx
+
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Practical_5B.WebForm1" Theme="Skin1"%>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Label ID="Label1" runat="server" SkinId="lbl" Text="Select the Date"></asp:Label>
+    <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/WebForm2.aspx">Next</asp:HyperLink>
+</asp:Content>
+
+--------------
+
+Web Forms with Master Page as WebForm2.aspx
+
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="Practical_5B.WebForm2" Theme="Skin1"%>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Label ID="Label1" runat="server" SkinId="lbl" Text="Label"></asp:Label>
+    <asp:TextBox ID="TextBox1" runat="server" style="margin-left: 43px" Width="182px"></asp:TextBox>
+</asp:Content>

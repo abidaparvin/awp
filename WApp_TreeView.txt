@@ -1,0 +1,64 @@
+Choose .NET Framework [Web Application]
+
+Code:
+
+WebForm.aspx
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Practical3c.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:TreeView ID="TreeView1" runat="server">
+                <Nodes>
+                    <asp:TreeNode Text="AWP" Value="AWP">
+                        <asp:TreeNode NavigateUrl="~/aarti.png" Text="FIRST" Value="FIRST">
+                            <asp:TreeNode NavigateUrl="~/wallpaperflare.com_wallpaper.jpg" Text="SECOND" Value="SECOND"></asp:TreeNode>
+                        </asp:TreeNode>
+                    </asp:TreeNode>
+                    <asp:TreeNode Text="JAVA" Value="JAVA">
+                        <asp:TreeNode NavigateUrl="~/Practical1C.sln" Text="THIRD" Value="THIRD">
+                            <asp:TreeNode NavigateUrl="~/Practical1D Vowels.sln" Text="FOUTH" Value="FOUTH"></asp:TreeNode>
+                        </asp:TreeNode>
+                    </asp:TreeNode>
+                </Nodes>
+            </asp:TreeView>
+            <br />
+            <asp:DataList ID="DataList1" runat="server" DataSourceID="XmlDataSource1">
+                <ItemTemplate>
+                    sid:
+                    <asp:Label ID="sidLabel" runat="server" Text='<%# Eval("sid") %>' />
+                    <br />
+                    sname:
+                    <asp:Label ID="snameLabel" runat="server" Text='<%# Eval("sname") %>' />
+                    <br />
+                    age:
+                    <asp:Label ID="ageLabel" runat="server" Text='<%# Eval("age") %>' />
+                    <br />
+<br />
+                </ItemTemplate>
+            </asp:DataList>
+            <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/XMLFile1.xml"></asp:XmlDataSource>
+        </div>
+    </form>
+</body>
+</html>
+
+----------
+
+XMLFile.xml
+
+<?xml version="1.0" encoding="utf-8" ?>
+<students>
+	<student sid="1" sname="Ranger" age="20"></student>
+
+	<student sid="2" sname="Monstro" age="30"></student>
+
+	<student sid="3" sname="Helium" age="35"></student>
+</students>

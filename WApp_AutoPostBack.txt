@@ -1,0 +1,107 @@
+Choose .NET Framework [Web Application]
+
+Code:
+
+WebForm.aspx
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="Roll No"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="Label2" runat="server" Text="Name"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="Label3" runat="server" Text="Class"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:RadioButton ID="RadioButton1" runat="server" Text="FY" />
+            <asp:RadioButton ID="RadioButton2" runat="server" Text="SY" />
+            <asp:RadioButton ID="RadioButton3" runat="server" Text="TY" />
+            <br />
+            <br />
+            <asp:Label ID="Label4" runat="server" Text="Course"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged1">
+                <asp:ListItem>BSC IT</asp:ListItem>
+                <asp:ListItem Selected="True">B.COM (A&amp;F)</asp:ListItem>
+                <asp:ListItem></asp:ListItem>
+            </asp:DropDownList>
+            <br />
+            <br />
+            <br />
+            <br />
+            <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Names="Bahnschrift" Font-Size="Large" ForeColor="#FF9900"></asp:Label>
+&nbsp;
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="ENROLL" />
+        </div>
+    </form>
+</body>
+</html>
+
+----------
+
+WebForm.aspx.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Practical3A
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string s;
+            if (RadioButton1.Checked == true)
+            {
+                s = RadioButton1.Text;
+            }
+            if (RadioButton2.Checked == true)
+            {
+                s = RadioButton2.Text;
+            }
+            else
+            {
+                s = RadioButton3.Text;
+            }
+            Label5.Text += s;
+        }
+
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        protected void DropDownList1_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            Label5.Text = "You have been enrolled in " + DropDownList1.SelectedItem;
+        }
+    }
+
+}

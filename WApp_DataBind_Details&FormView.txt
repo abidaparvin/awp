@@ -1,0 +1,92 @@
+Choose .NET Framework [Web Application]
+
+Code:
+
+WebForm.aspx
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Practical_8B.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:FormView ID="FormView1" runat="server" AllowPaging="True" DataKeyNames="sno" DataSourceID="SqlDataSource1">
+                <EditItemTemplate>
+                    sno:
+                    <asp:Label ID="snoLabel1" runat="server" Text='<%# Eval("sno") %>' />
+                    <br />
+                    name:
+                    <asp:TextBox ID="nameTextBox" runat="server" Text='<%# Bind("name") %>' />
+                    <br />
+                    city:
+                    <asp:TextBox ID="cityTextBox" runat="server" Text='<%# Bind("city") %>' />
+                    <br />
+                    class:
+                    <asp:TextBox ID="classTextBox" runat="server" Text='<%# Bind("class") %>' />
+                    <br />
+                    <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
+                    &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                </EditItemTemplate>
+                <HeaderTemplate>
+                    Student List
+                </HeaderTemplate>
+                <InsertItemTemplate>
+                    sno:
+                    <asp:TextBox ID="snoTextBox" runat="server" Text='<%# Bind("sno") %>' />
+                    <br />
+                    name:
+                    <asp:TextBox ID="nameTextBox" runat="server" Text='<%# Bind("name") %>' />
+                    <br />
+                    city:
+                    <asp:TextBox ID="cityTextBox" runat="server" Text='<%# Bind("city") %>' />
+                    <br />
+                    class:
+                    <asp:TextBox ID="classTextBox" runat="server" Text='<%# Bind("class") %>' />
+                    <br />
+                    <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+                    &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                </InsertItemTemplate>
+                <ItemTemplate>
+                    sno:
+                    <asp:Label ID="snoLabel" runat="server" Text='<%# Eval("sno") %>' />
+                    <br />
+                    name:
+                    <asp:Label ID="nameLabel" runat="server" Text='<%# Bind("name") %>' />
+                    <br />
+                    city:
+                    <asp:Label ID="cityLabel" runat="server" Text='<%# Bind("city") %>' />
+                    <br />
+                    class:
+                    <asp:Label ID="classLabel" runat="server" Text='<%# Bind("class") %>' />
+                    <br />
+
+                </ItemTemplate>
+            </asp:FormView>
+            <br />
+            <br />
+            <asp:DetailsView ID="DetailsView1" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="sno" 
+                DataSourceID="SqlDataSource1" Height="50px" Width="125px">
+                <Fields>
+                    <asp:BoundField DataField="sno" HeaderText="sno" ReadOnly="True" SortExpression="sno" />
+                    <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
+                    <asp:BoundField DataField="city" HeaderText="city" SortExpression="city" />
+                    <asp:BoundField DataField="class" HeaderText="class" SortExpression="class" />
+                </Fields>
+                <HeaderTemplate>
+                    Student Details
+                </HeaderTemplate>
+            </asp:DetailsView>
+            <br />
+            <br />
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:studentConnectionString %>" 
+                ProviderName="<%$ ConnectionStrings:studentConnectionString.ProviderName %>
+                " SelectCommand="SELECT * FROM [student]"></asp:SqlDataSource>
+        </div>
+    </form>
+</body>
+</html>

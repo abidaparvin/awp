@@ -1,0 +1,122 @@
+Choose .NET Framework [Web Application]
+
+Code:
+
+WebForm.aspx
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Practica_8A.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="Sr. No"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="Label2" runat="server" Text="Name"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="Label3" runat="server" Text="City"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="Label4" runat="server" Text="Class"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="View" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Insert" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Modify" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Delete" />
+        </div>
+        <p>
+            &nbsp;</p>
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="sno" DataSourceID="SqlDataSource1">
+            <Columns>
+                <asp:BoundField DataField="sno" HeaderText="sno" ReadOnly="True" SortExpression="sno" />
+                <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
+                <asp:BoundField DataField="city" HeaderText="city" SortExpression="city" />
+                <asp:BoundField DataField="class" HeaderText="class" SortExpression="class" />
+            </Columns>
+        </asp:GridView>
+        <br />
+        <br />
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:studentConnectionString %>" ProviderName="<%$ ConnectionStrings:studentConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [student]"></asp:SqlDataSource>
+    </form>
+</body>
+</html>
+
+------------
+
+WebForm.aspx.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+namespace Practica_8A
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        SqlCommand co = new SqlCommand();
+        SqlDataReader ds;
+SqlDataSource s = new SqlDataSource();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            s.ConnectionString = "Data Source=DESKTOP-O9A8QHO;Initial Catalog=student;Integrated Security=True";
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            s.SelectCommand = "select * from student;";
+            GridView1.DataBind();
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            SqlParameter p1 = new SqlParameter(), p2 = new SqlParameter(), p3 = new SqlParameter(),
+                p4 = new SqlParameter();
+            s.InsertParameters.Add("p1", System.Data.DbType.Int32, TextBox1.Text);
+            s.InsertParameters.Add("p2", System.Data.DbType.String, TextBox2.Text);
+            s.InsertParameters.Add("p3", System.Data.DbType.String, TextBox3.Text);
+            s.InsertParameters.Add("p4", System.Data.DbType.String, TextBox4.Text);
+            s.InsertCommand = "insert into student values(@p1,@p2,@p3,@p4);";
+            s.Insert();
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            SqlParameter p1 = new SqlParameter(), p2 = new SqlParameter();
+            s.UpdateParameters.Add("p2", System.Data.DbType.String, TextBox2.Text);
+            s.UpdateParameters.Add("p1", System.Data.DbType.Int32, TextBox1.Text);
+            s.UpdateCommand = "update student SET name=@p2 where sno=@p1;";
+            s.Update();
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            SqlParameter p1 = new SqlParameter();
+            s.DeleteParameters.Add("p1", System.Data.DbType.Int32, TextBox1.Text);
+            s.DeleteCommand = "delete student where sno=@p1;";
+            s.Delete();
+        }
+    }
+}

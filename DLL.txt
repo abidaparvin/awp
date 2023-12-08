@@ -1,0 +1,38 @@
+Choose Class Library (.NET Framework) dll
+
+Code:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ClassLibrary1
+{
+    public class Class1
+    {
+        public int add(int a, int b)
+        {
+            int c = a + b;
+            return c;
+        }
+
+    }
+}
+
+NOTE: Build after typing.
+
+-----------------
+
+Choose Console App (.NET Framework) C#
+
+Go to reference and select add reference [Below Solution Explorer]
+Select Class file
+
+Under static void Main,
+
+ClassLibrary1.Class1 c = new ClassLibrary1.Class1();
+int t = c.add(20, 3);
+Console.WriteLine("addition={0}", t);
+Console.ReadKey();
