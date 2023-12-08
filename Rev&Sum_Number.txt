@@ -1,0 +1,52 @@
+Choose console app
+
+Code:
+
+using System;
+
+class Program
+{
+    // Function to reverse a number
+    public static int ReverseNumber(int number)
+    {
+        int reversedNumber = 0;
+        while (number > 0)
+        {
+            int digit = number % 10;
+            reversedNumber = reversedNumber * 10 + digit;
+            number /= 10;
+        }
+        return reversedNumber;
+    }
+
+    // Function to calculate the sum of digits of a number
+    public static int SumOfDigits(int number)
+    {
+        int sum = 0;
+        while (number > 0)
+        {
+            int digit = number % 10;
+            sum += digit;
+            number /= 10;
+        }
+        return sum;
+    }
+    public static void Main(String[] args)
+    {
+        // Get input from the user
+        Console.Write("Enter a number: ");
+        int inputNumber = int.Parse(Console.ReadLine());
+
+        // Reverse the number
+        int reversedNumber = ReverseNumber(inputNumber);
+
+        // Calculate the sum of digits of the reversed number
+        int sumOfDigits = SumOfDigits(reversedNumber);
+
+        // Print the reversed number and the sum of digits
+        Console.WriteLine($"Reversed number: {reversedNumber}");
+        Console.WriteLine($"Sum of digits of reversed number: {sumOfDigits}");
+    }
+
+    
+}
